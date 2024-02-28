@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping("/")
     public String version() {
-        return "CI/CD TEST COMPLETED";
+        return "CI/CD TEST COMPLETED!!!";
     }
 }
