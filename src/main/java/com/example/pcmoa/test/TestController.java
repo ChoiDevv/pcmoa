@@ -12,6 +12,6 @@ public class TestController {
 
     @GetMapping("/")
     public String version() {
-        return "Welcome, CI/CD TEST! This spring boot version is " + version;
+        return "CI/CD TEST COMPLETED";
     }
 }
