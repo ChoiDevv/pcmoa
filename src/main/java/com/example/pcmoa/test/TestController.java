@@ -10,8 +10,8 @@ public class TestController {
     @Value("${app.version:3.2.3}")
     String version;
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String version() {
-        return "CI/CD TEST COMPLETED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+        return "CI/CD TEST COMPLETED.";
     }
 }

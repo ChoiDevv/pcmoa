@@ -22,6 +22,8 @@ dependencies {
 
 	// lombok
 	implementation 'org.projectlombok:lombok'
+
+	//
 }
 
 tasks.named('test') {
