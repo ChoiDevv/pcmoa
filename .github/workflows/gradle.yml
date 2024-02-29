@@ -44,7 +44,7 @@ jobs:
       shell: bash
 
     - name: Build with Gradle Wrapper
-      run: ./gradlew clean build
+      run: ./gradlew build --warning-mode all
 
     - name: Make Zip File
       run: zip -qq -r ./$GITHUB_SHA.zip .
