@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<body>
+<div layout:fragment="content">
+    <div>
+        <h1>로그인</h1>
+        <button type="button" class="btn btn-light">회원 로그인</button>
+        <button type="button" class="btn btn-light">비회원 주문</button>
+        <div>
+            <form th:action="@{/login}" method="post">
+                <label for="email" class="form-label">email</label>
+                <input type="text" id="email" class="form-control" aria-describedby="email-description">
+                <label for="password" class="form-label">password</label>
+                <input type="password" id="password" class="form-control" aria-describedby="password-description">
+                <button type="submit" class="btn btn-dark">로그인</button>
+            </form>
+        </div>
+        <div>
+            <div>
+                <a href="">아이디 찾기</a>
+                <a href="">비밀번호 찾기</a>
+            </div>
+            <p>PCMOA와 함께 하여 혜택을 누리세요. <strong><a href="/sign-up">회원가입</a></strong></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -11,3 +11,7 @@ spring:
       suffix: .html
       cache: false
       check-template-location: true
+
+  mvc:
+    validation:
+      validation-mode: auto
