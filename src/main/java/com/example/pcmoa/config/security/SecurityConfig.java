@@ -1,4 +1,4 @@
-package com.example.pcmoa.config;
+package com.example.pcmoa.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/product/**").hasRole("USER")
+                        .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/image/**").permitAll()
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()

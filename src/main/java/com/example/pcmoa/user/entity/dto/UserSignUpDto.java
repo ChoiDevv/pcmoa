@@ -1,6 +1,7 @@
 package com.example.pcmoa.user.entity.dto;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class UserSignUpDto {
     @Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", message = "양식을 다시 확인해주세요. -를 포함해주세요.")
     private String phoneNumber;
 
+    @NotBlank(message = "생일은 필수항목입니다.")
     private String birthday;
 
     private String sex;
