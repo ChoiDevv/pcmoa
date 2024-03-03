@@ -4,4 +4,6 @@ import com.example.pcmoa.user.entity.dto.UserSignUpDto;
 
 public interface UserService {
     void signup(UserSignUpDto userSignUpDto);
+
+    boolean duplicateCheck(String email);
 }

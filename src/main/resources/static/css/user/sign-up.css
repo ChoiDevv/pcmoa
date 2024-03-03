@@ -3,14 +3,31 @@
     text-align: center;
 }
 
+#sign-up-box form label {
+    margin-top: 10px;
+}
+
 #sign-up-box form input {
-    margin-bottom: 10px;
+    flex: 1
+}
+
+#sign-up-box form .alert {
+    margin-top: 7px;
+}
+
+#sign-up-box .email-check-box {
+    display: flex;
+    align-items: center;
+}
+
+#sign-up-box .email-check-box button {
+    margin-left: 8px;
 }
 
 #sign-up-box form select {
     width: 100%;
     height:100%;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 

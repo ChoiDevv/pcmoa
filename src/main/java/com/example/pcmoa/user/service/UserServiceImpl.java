@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
         Users user = Users.toEntity(userSignUpDto, role, passwordEncoder);
         userRepository.save(user);
     }
+
+    @Override
+    public boolean duplicateCheck(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }

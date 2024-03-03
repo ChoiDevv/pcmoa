@@ -2,14 +2,18 @@ package com.example.pcmoa.user.controller;
 
 import com.example.pcmoa.user.entity.dto.UserSignUpDto;
 import com.example.pcmoa.user.service.UserService;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -50,8 +54,8 @@ public class UserController {
 
     /**
      * 회원가입
-     * @param userSignUpDto 회원가입에서 입력받는 객체, BindingResult 예외처리
      * @author ChoiDevv
+     * @param userSignUpDto 회원가입에서 입력받는 객체, BindingResult 예외처리
      * @exception IncorrectPassword 패스워드 검증 실패, DuplicatedEmail 중복된 이메일, UnknownError 알 수 없는 오류
      * @return String | "redirect:/login" 로그인 페이지
      */
@@ -62,18 +66,31 @@ public class UserController {
                 return "user/sign-up";
             }
 
+            if (userService.duplicateCheck(userSignUpDto.getEmail())) {
+                bindingResult.rejectValue("email", "DuplicateCheck", "중복된 이메일입니다.");
+                return "user/sign-up";
+            }
+
             if (!Objects.equals(userSignUpDto.getPassword(), userSignUpDto.getPasswordCheck())) {
                 bindingResult.rejectValue("passwordCheck", "IncorrectPassword", "패스워드가 일치하지 않습니다.");
                 return "user/sign-up";
             }
             userService.signup(userSignUpDto);
-        } catch (DataIntegrityViolationException e) {
-            bindingResult.reject("DuplicatedEmail", "이미 가입된 사용자가 존재합니다.");
-            return "user/sign-up";
         } catch (Exception e) {
             bindingResult.reject("UnknownError", "알 수 없는 오류로 가입을 실패하였습니다. 관리자에게 문의해주세요.");
             return "user/sign-up";
         }
         return "redirect:/login";
+    }
+
+    /**
+     * 자바스크립트 비동기 중복 확인
+     * @author ChoiDevv
+     * @param @RequestParam String | email 이메일
+     * @return boolean | 이메일 유무
+     */
+    @GetMapping("/user/duplicate-check")
+    public ResponseEntity<Boolean> duplicateCheck(@RequestParam(name = "email") String email) {
+        return ResponseEntity.ok(userService.duplicateCheck(email));
     }
 }
