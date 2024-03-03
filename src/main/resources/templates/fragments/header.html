@@ -38,7 +38,8 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="/login">로그인</a>
+                    <a class="dropdown-item" th:href="@{/login}" sec:authorize="isAnonymous()">로그인</a>
+                    <a class="dropdown-item" th:href="@{/logout}" sec:authorize="isAuthenticated()">로그아웃</a>
                     <a class="dropdown-item" href="#">고객센터</a>
                     <a class="dropdown-item" href="#">마이페이지</a>
                     <a class="dropdown-item" href="#">장바구니</a>
