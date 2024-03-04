@@ -28,7 +28,7 @@ public class UserController {
      * @return String | "/login" 로그인 페이지
      */
     @GetMapping("/login")
-    public String loginPage() {
+    public String login(UserSignUpDto userSignUpDto) {
         return "user/login";
     }
 
@@ -55,7 +55,7 @@ public class UserController {
     /**
      * 회원가입
      * @author ChoiDevv
-     * @param userSignUpDto 회원가입에서 입력받는 객체, BindingResult 예외처리
+     * @param @Validated userSignUpDto 회원가입에서 입력받는 객체, BindingResult 예외처리
      * @exception IncorrectPassword 패스워드 검증 실패, DuplicatedEmail 중복된 이메일, UnknownError 알 수 없는 오류
      * @return String | "redirect:/login" 로그인 페이지
      */

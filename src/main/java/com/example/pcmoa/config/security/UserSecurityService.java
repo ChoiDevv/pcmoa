@@ -2,7 +2,7 @@ package com.example.pcmoa.config.security;
 
 import com.example.pcmoa.user.entity.Users;
 import com.example.pcmoa.user.entity.repository.UserRepository;
-import com.example.pcmoa.user.entity.repository.UserRole;
+import com.example.pcmoa.user.entity.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,7 +26,7 @@ public class UserSecurityService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if ("admin".equals(user.getEmail())) {
+        if ("admin@gmail.com".equals(user.getEmail())) {
             authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));

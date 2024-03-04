@@ -23,12 +23,12 @@ public class SecurityConfig {
                         .csrfTokenRepository(csrfTokenRepository()))
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/product/**").hasRole("USER")
+                        .requestMatchers("/product/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/image/**").permitAll()
                         .requestMatchers("/public/**", "/resources/**", "/static/**", "/css/**", "/js/**").permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
                         .anyRequest().authenticated())
                 .formLogin((formLogin) -> formLogin
