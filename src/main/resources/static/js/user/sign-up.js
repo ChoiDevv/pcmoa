@@ -4,8 +4,9 @@ function isValidEmail(email) {
 }
 
 function duplicateCheck() {
-    let header = $("meta[name='_csrf_header']").attr('content');
-    let token = $("meta[name='_csrf']").attr('content');
+    const header = $("meta[name='_csrf_header']").attr('content');
+    const token = $("meta[name='_csrf']").attr('content');
+
     let email_input = $('#email');
     let email_value = email_input.val();
 
@@ -35,3 +36,10 @@ function duplicateCheck() {
         }
     });
 }
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#spinner').hide();
+        $('.container').show();
+    }, 2000);
+});

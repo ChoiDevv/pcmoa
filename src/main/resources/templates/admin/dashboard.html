@@ -21,12 +21,10 @@
     <!-- 사이드바 -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a th:href="@{/admin/dashboard}">PCMOA</a>
-            </li>
+            <li class="sidebar-brand"><a th:href="@{/admin/dashboard}">PCMOA</a></li>
             <li><a th:href="@{/}">운영 사이트</a></li>
             <li><a th:href="@{/admin/user-list}">사용자</a></li>
-            <li><a href="#">상품</a></li>
+            <li><a th:href="@{/admin/product-list}">상품</a></li>
         </ul>
     </div>
     <!-- /사이드바 -->

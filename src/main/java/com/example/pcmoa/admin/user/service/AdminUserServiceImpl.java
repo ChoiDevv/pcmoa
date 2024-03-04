@@ -1,4 +1,4 @@
-package com.example.pcmoa.admin.service;
+package com.example.pcmoa.admin.user.service;
 
 import com.example.pcmoa.user.entity.UserStatus;
 import com.example.pcmoa.user.entity.dto.UsersDto;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImpl implements AdminService {
+public class AdminUserServiceImpl implements com.example.pcmoa.admin.user.service.AdminUserService {
 
     private final UserRepository userRepository;
 

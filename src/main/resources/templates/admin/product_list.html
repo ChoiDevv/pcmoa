@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- 부트스트랩 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/admin/dashboard.css">
+    <script src="/js/admin/product-list.js"></script>
+    <title>PCMOA 대시보드</title>
+</head>
+<body>
+<div id="page-wrapper">
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a th:href="@{/admin/dashboard}">PCMOA</a></li>
+            <li><a th:href="@{/}">운영 사이트</a></li>
+            <li><a th:href="@{/admin/user-list}">사용자</a></li>
+            <li><a href="#">상품</a></li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1>상품</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                상품 등록
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">상품 등록</h1>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="productName" class="form-label">상품 이름</label>
+                                <input type="text" class="form-control" id="productName" placeholder="상품 이름을 적어주세요."/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productDescription" class="form-label">상품 소개</label>
+                                <textarea class="form-control" id="productDescription" rows="3" placeholder="상품 소개를 적어주세요."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productPrice" class="form-label">상품 가격</label>
+                                <input type="number" class="form-control" id="productPrice" placeholder="상품 가격을 적어주세요." oninput="validity.valid||(value='');"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productCategory" class="form-label">상품 카테고리</label>
+                                <input type="text" class="form-control" id="productCategory"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productStock" class="form-label">상품 재고</label>
+                                <input type="number" class="form-control" id="productStock" placeholder="상품 이름을 적어주세요." oninput="validity.valid||(value='');"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                            <button type="button" class="btn btn-primary" onclick="productSave()">상품 저장</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /본문 -->
+</div>
+</body>
+</html>

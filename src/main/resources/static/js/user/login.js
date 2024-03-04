@@ -1,4 +1,9 @@
 $(document).ready(function() {
+    setTimeout(function() {
+        $('#spinner').hide();
+        $('.container').show();
+    }, 2000);
+
     let selectedForm = 'loginForm';
     $('#' + selectedForm).show();
 
