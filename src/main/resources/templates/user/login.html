@@ -12,14 +12,14 @@
 <div layout:fragment="content">
     <div>
         <div class="spinner-border text-dark" role="status" id="spinner" style="display: flex; justify-content: center;">
-            <span class="visually-hidden">로그인 페이지를 로딩중입니다.</span>
+            <span class="visually-hidden">로딩중입니다.</span>
         </div>
         <div class="container h-100" style="display: none;">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="col-md-6" id="login-form-box">
                     <h3><strong>로그인</strong></h3>
                     <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                        사용자 ID 또는 비밀번호를 확인해주세요.
+                        사용자 이메일 또는 비밀번호를 확인해주세요.
                     </div>
                     <button type="button" class="toggleBtn selected" data-form="loginForm">회원 로그인</button>
                     <button type="button" class="toggleBtn" data-form="noLoginForm">비회원 주문</button>
