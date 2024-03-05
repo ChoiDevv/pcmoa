@@ -37,6 +37,7 @@
 | /admin/user-list      | 관리자 유저관리 페이지 |   GET    |
 | /admin/product-list   | 관리자 상품관리 페이지 |   GET    |
 | /admin/product/save   | 관리자 상품 저장    |   POST   |
+
 <br></br>
 
 ## 🕐 리드미 최신화 일자
