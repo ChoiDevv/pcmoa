@@ -25,20 +25,20 @@
 <br></br>
 
 ## 4️⃣ URL
-| 도메인                   | 설명           | Http 메소드 |
-|:----------------------|:-------------|:--------:|
-| /                     | 메인 페이지       |   GET    |
-| /login                | 로그인 페이지      |   GET    |
-| /login                | 로그인          |   POST   |
-| /sign-up              | 회원가입 페이지     |   GET    |
-| /sign-up              | 회원가입         |   POST   |
-| /user/duplicate-check | 이메일 중복 검사    |   GET    |
-| /admin/dashboard      | 관리자 페이지      |   GET    |
-| /admin/user-list      | 관리자 유저관리 페이지 |   GET    |
-| /admin/product-list   | 관리자 상품관리 페이지 |   GET    |
-| /admin/product/save   | 관리자 상품 저장    |   POST   |
+| 도메인                   | 설명             | Http 메소드 |
+|:----------------------|:---------------|:--------:|
+| /                     | 메인 페이지         |   GET    |
+| /login                | 로그인 페이지        |   GET    |
+| /login                | 로그인            |   POST   |
+| /sign-up              | 회원가입 페이지       |   GET    |
+| /sign-up              | 회원가입           |   POST   |
+| /user/duplicate-check | 이메일 중복 검사      |   GET    |
+| /admin/dashboard      | 관리자 페이지        |   GET    |
+| /admin/user-list      | 관리자 유저관리 페이지   |   GET    |
+| /admin/product-list   | 관리자 상품관리 페이지   |   GET    |
+| /admin/product/save   | 관리자 상품, 이미지 저장 |   POST   |
 
 <br></br>
 
 ## 🕐 리드미 최신화 일자
-2024년 3월 5일에 최신화하였습니다.
+2024년 3월 7일에 최신화하였습니다.
