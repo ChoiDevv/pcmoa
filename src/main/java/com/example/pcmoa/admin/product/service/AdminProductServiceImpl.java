@@ -1,23 +1,60 @@
 package com.example.pcmoa.admin.product.service;
 
+import com.example.pcmoa.product.entity.ProductImages;
 import com.example.pcmoa.product.entity.ProductStatus;
 import com.example.pcmoa.product.entity.Products;
-import com.example.pcmoa.admin.product.dto.AdminProductDto;
+import com.example.pcmoa.product.entity.repository.ProductImagesRepository;
 import com.example.pcmoa.product.entity.repository.ProductRepository;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AdminProductServiceImpl implements AdminProductService {
 
-    private final ProductRepository productRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private ProductImagesRepository productImagesRepository;
+
+    // 파일 절대경로 불러오는 클래스 ResourceLoader | ChoiDevv
+    private final ResourceLoader resourceLoader;
+    public AdminProductServiceImpl(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     @Transactional
     @Override
-    public void save(AdminProductDto adminProductDto) {
-        ProductStatus status = ProductStatus.SELL;
-        productRepository.save(Products.toEntity(adminProductDto, status));
+    public void save(String name, String description, long price, String category, long stock, List<MultipartFile> images) throws IOException {
+        // 상품 저장 | ChoiDevv
+        Products products = productRepository.save(Products.toEntity(name, description, price, category, stock, ProductStatus.SELL));
+
+        try {
+            for (MultipartFile image: images) {
+
+                String fileName = StringUtils.cleanPath(image.getOriginalFilename());
+                Resource resource = resourceLoader.getResource("classpath:/static/images/");
+                File uploadPath = resource.getFile();
+                Path filePath = uploadPath.toPath().resolve(fileName);
+                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                // 이미지 저장 | ChoiDevv
+                productImagesRepository.save(ProductImages.toEntity(fileName, products));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("이미지 저장에 실패하였습니다.");
+        }
     }
 }

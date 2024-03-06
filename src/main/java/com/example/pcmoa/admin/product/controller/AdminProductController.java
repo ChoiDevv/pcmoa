@@ -12,6 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,12 +40,11 @@ public class AdminProductController {
      * @return String | "저장완료" (추후에 Object로 변경 예정)
      */
     @PostMapping("/admin/product/save")
-    public ResponseEntity<String> save(@Valid @RequestBody AdminProductDto adminProductDto, BindingResult bindingResult) {
+    public ResponseEntity<String> save(@RequestParam("name") String name, @RequestParam("description") String description,
+                                       @RequestParam("price") long price, @RequestParam("category") String category,
+                                       @RequestParam("stock") long stock, @RequestParam("images")List<MultipartFile> images) {
         try {
-            if (bindingResult.hasErrors()) {
-                return ResponseEntity.badRequest().body("유효성 검사가 실패했습니다.");
-            }
-            adminProductService.save(adminProductDto);
+            adminProductService.save(name, description, price, category, stock, images);
             return ResponseEntity.ok("저장완료");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("에러: " + e.getMessage());

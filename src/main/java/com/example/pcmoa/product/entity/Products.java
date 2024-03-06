@@ -1,13 +1,13 @@
 package com.example.pcmoa.product.entity;
 
 import com.example.pcmoa.config.entity.BaseEntity;
-import com.example.pcmoa.admin.product.dto.AdminProductDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,6 +37,9 @@ public class Products extends BaseEntity {
     @Column
     private Long hits;
 
+    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImages> images;
+
     @Builder
     public Products(String name, String description, BigDecimal price, String category, BigDecimal stock, ProductStatus productStatus, Long hits) {
         this.name = name;
@@ -48,13 +51,13 @@ public class Products extends BaseEntity {
         this.hits = hits;
     }
 
-    public static Products toEntity(AdminProductDto adminProductDto, ProductStatus status) {
+    public static Products toEntity(String name, String description, long price, String category, long stock, ProductStatus status) {
         return Products.builder()
-                .name(adminProductDto.getName())
-                .description(adminProductDto.getDescription())
-                .price(new BigDecimal(adminProductDto.getPrice()))
-                .category(adminProductDto.getCategory())
-                .stock(new BigDecimal(adminProductDto.getStock()))
+                .name(name)
+                .description(description)
+                .price(new BigDecimal(price))
+                .category(category)
+                .stock(new BigDecimal(stock))
                 .productStatus(status)
                 .hits(0L)
                 .build();

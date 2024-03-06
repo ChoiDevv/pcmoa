@@ -3,6 +3,9 @@ function productSave() {
     const token = $("meta[name='_csrf']").attr('content');
 
     let productName = $('#productName').val();
+    // 이미지 파일
+    let productImage = $('#productImage');
+    let files = productImage.prop('files');
     let productDescription = $('#productDescription').val();
     let productPrice = $('#productPrice').val();
     let productCategory = $('#productCategory').val();
@@ -11,21 +14,26 @@ function productSave() {
     if (productName === "" || productDescription === "" || productPrice === "" || productCategory === "" || productStock === "") {
         alert("공백이 존재합니다.");
     } else {
+        let formData = new FormData();
+        formData.append("name", productName);
+        formData.append("description", productDescription);
+        formData.append("price", productPrice);
+        formData.append("category", productCategory);
+        formData.append("stock", productStock);
+
+        for (let i = 0; i < files.length; i++) {
+            formData.append("images", files[i]);
+        }
+
         $.ajax({
             type: 'POST',
             beforeSend: function (xhr) {
                 xhr.setRequestHeader(header, token);
             },
-            contentType: "application/json; charset=utf-8",
-            dataType: "text",
+            processData: false,
+            contentType: false,
             url: '/admin/product/save',
-            data: JSON.stringify({
-                name: productName,
-                description: productDescription,
-                price: productPrice,
-                category: productCategory,
-                stock: productStock
-            }),
+            data: formData,
             success: function (result) {
                 console.log(result);
                 alert("상품 등록이 완료되었습니다.");
@@ -36,4 +44,15 @@ function productSave() {
             }
         });
     }
+}
+
+function getBase64(file, callback) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        callback(reader.result.split(',')[1]);
+    };
+    reader.onerror = function (error) {
+        console.error('파일을 읽는데 문제가 생겼습니다.', error);
+    };
 }

@@ -12,3 +12,12 @@ spring:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
         show_sql: true #show sql
+
+  resources:
+    static-locations: classpath:/static/, file:/path/to/external/resources/
+
+# 디버그 환경 추가 | ChoiDevv
+logging:
+  level:
+    org:
+      springframework: debug

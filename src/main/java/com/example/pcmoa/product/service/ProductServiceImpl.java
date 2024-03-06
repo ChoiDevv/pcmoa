@@ -1,7 +1,9 @@
 package com.example.pcmoa.product.service;
 
+import com.example.pcmoa.product.entity.ProductImages;
 import com.example.pcmoa.product.entity.ProductStatus;
 import com.example.pcmoa.product.entity.dto.ProductsDto;
+import com.example.pcmoa.product.entity.repository.ProductImagesRepository;
 import com.example.pcmoa.product.entity.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

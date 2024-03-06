@@ -1,5 +1,6 @@
 package com.example.pcmoa.product.controller;
 
+import com.example.pcmoa.product.entity.ProductImages;
 import com.example.pcmoa.product.entity.dto.ProductsDto;
 import com.example.pcmoa.product.service.ProductService;
 import lombok.RequiredArgsConstructor;

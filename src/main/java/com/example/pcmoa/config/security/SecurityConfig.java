@@ -23,7 +23,7 @@ public class SecurityConfig {
                         .csrfTokenRepository(csrfTokenRepository()))
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+//                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/user/**").permitAll()
                         .requestMatchers("/product/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/css/**").permitAll()
