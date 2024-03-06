@@ -1,4 +1,4 @@
-package com.example.pcmoa.product.entity.dto;
+package com.example.pcmoa.admin.product.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,11 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Getter
 @NoArgsConstructor
-public class ProductDto {
+public class AdminProductDto {
 
     @NotBlank(message = "상품명은 필수값입니다.")
     private String name;
@@ -28,7 +26,7 @@ public class ProductDto {
     private Long stock;
 
     @Builder
-    public ProductDto(String name, String description, Long price, String category, Long stock) {
+    public AdminProductDto(String name, String description, Long price, String category, Long stock) {
         this.name = name;
         this.description = description;
         this.price = price;

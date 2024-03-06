@@ -1,7 +1,7 @@
 package com.example.pcmoa.admin.product.service;
 
-import com.example.pcmoa.product.entity.dto.ProductDto;
+import com.example.pcmoa.admin.product.dto.AdminProductDto;
 
 public interface AdminProductService {
-    void save(ProductDto productDto);
+    void save(AdminProductDto adminProductDto);
 }

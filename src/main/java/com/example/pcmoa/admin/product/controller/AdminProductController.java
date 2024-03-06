@@ -1,7 +1,7 @@
 package com.example.pcmoa.admin.product.controller;
 
 import com.example.pcmoa.admin.product.service.AdminProductService;
-import com.example.pcmoa.product.entity.dto.ProductDto;
+import com.example.pcmoa.admin.product.dto.AdminProductDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,12 +36,12 @@ public class AdminProductController {
      * @return String | "저장완료" (추후에 Object로 변경 예정)
      */
     @PostMapping("/admin/product/save")
-    public ResponseEntity<String> save(@Valid @RequestBody ProductDto productDto, BindingResult bindingResult) {
+    public ResponseEntity<String> save(@Valid @RequestBody AdminProductDto adminProductDto, BindingResult bindingResult) {
         try {
             if (bindingResult.hasErrors()) {
                 return ResponseEntity.badRequest().body("유효성 검사가 실패했습니다.");
             }
-            adminProductService.save(productDto);
+            adminProductService.save(adminProductDto);
             return ResponseEntity.ok("저장완료");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("에러: " + e.getMessage());
