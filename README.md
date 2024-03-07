@@ -39,11 +39,13 @@
 | /admin/product-list   | 관리자 상품관리 페이지   |   GET    |
 | /admin/product/save   | 관리자 상품, 이미지 저장 |   POST   |
 
+<br></br>
 
 ## 5️⃣ 변경 예정 사항
 - **현재 작업 환경**
 1. 로컬에서 MariaDB를 사용하고 있습니다. 차후에 AWS RDS로 변경 예정입니다.
-2. 또한 서버 내에 classpath:/static/images에 이미지를 저장하고 있는데 AWS S3로 저장 스토리지를 변경할 예정입니다.
+2. 또한 서버 내에 classpath:/static/image/product에 이미지를 저장하고 있는데 AWS S3로 저장 스토리지를 변경할 예정입니다.
+    + product 디렉토리는 git ignore 되어있습니다. 프로젝트 다운로드 시 추가해야합니다.
 3. AWS EC2 환경은 중지되어있습니다. 개발 서버 작업을 완료한 후에 배포 작업 진행합니다.
 
 <br></br>
