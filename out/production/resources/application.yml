@@ -1,0 +1,7 @@
+spring:
+  config:
+    import:
+      - classpath:/application-dev.yml
+  mvc:
+    validation:
+      validation-mode: auto

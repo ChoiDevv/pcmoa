@@ -1,12 +1,15 @@
 package com.example.pcmoa.product.entity.dto;
 
+import com.example.pcmoa.product.entity.ProductImages;
 import com.example.pcmoa.product.entity.ProductStatus;
 import com.example.pcmoa.product.entity.Products;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +22,14 @@ public class ProductsDto {
     private String name;
     private String createdDate;
     private String description;
-    private BigDecimal price;
+    private Long price;
     private String category;
-    private BigDecimal stock;
+    private Long stock;
     private Long hits;
+    private ProductImages productImages;
 
     @Builder
-    public ProductsDto(Long id, String name, String createdDate, String description, BigDecimal price, String category, BigDecimal stock, Long hits) {
+    public ProductsDto(Long id, String name, String createdDate, String description, Long price, String category, Long stock, Long hits, ProductImages productImages) {
         this.id = id;
         this.name = name;
         this.createdDate = createdDate;
@@ -34,6 +38,7 @@ public class ProductsDto {
         this.category = category;
         this.stock = stock;
         this.hits = hits;
+        this.productImages = productImages;
     }
 
     public static List<ProductsDto> transformation(List<Products> products) {
@@ -45,10 +50,11 @@ public class ProductsDto {
                     .name(product.getName())
                     .createdDate(product.getCreatedDate().format(formatter))
                     .description(product.getDescription())
-                    .price(product.getPrice())
+                    .price(product.getPrice().longValue())
                     .category(product.getCategory())
-                    .stock(product.getStock())
+                    .stock(product.getStock().longValue())
                     .hits(product.getHits())
+                    .productImages(product.getImages().get(0))
                     .build();
             data.add(dto);
         }

@@ -29,7 +29,7 @@ public class ProductImages extends BaseEntity {
 
     public static ProductImages toEntity(String fileName, Products products) {
         return ProductImages.builder()
-                .image("/images/" + fileName)
+                .image(fileName)
                 .products(products)
                 .build();
     }

@@ -19,7 +19,7 @@ public class ProductController {
     /**
      * 메인 페이지 렌더링
      * @author ChoiDevv
-     * @return String | "/product/main" 메인 페이지
+     * @return String | "/" 메인 페이지
      */
     @GetMapping("/")
     public String index(Model model) {

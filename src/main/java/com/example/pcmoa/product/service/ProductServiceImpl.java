@@ -5,6 +5,7 @@ import com.example.pcmoa.product.entity.ProductStatus;
 import com.example.pcmoa.product.entity.dto.ProductsDto;
 import com.example.pcmoa.product.entity.repository.ProductImagesRepository;
 import com.example.pcmoa.product.entity.repository.ProductRepository;
+import com.example.pcmoa.product.entity.repository.querydsl.DslProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,10 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final DslProductRepository dslProductRepository;
 
     @Override
     public List<ProductsDto> index() {
-        ProductStatus status = ProductStatus.SELL;
-        return ProductsDto.transformation(productRepository.findAllByProductStatusAndStockNot(status, BigDecimal.ZERO));
+        return ProductsDto.transformation(dslProductRepository.findAllProductsWithImages());
     }
 }

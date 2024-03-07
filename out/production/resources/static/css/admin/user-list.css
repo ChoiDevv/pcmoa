@@ -1,0 +1,15 @@
+.user-list-box h1 {
+    margin-bottom: 30px;
+}
+
+.user-list-box table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-list-box table th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}

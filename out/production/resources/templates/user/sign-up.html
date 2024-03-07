@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user/sign-up.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/user/sign-up.js}"></script>
+</th:block>
+<body>
+<div layout:fragment="content">
+    <div>
+        <div class="spinner-border text-dark" role="status" id="spinner" style="display: flex; justify-content: center;">
+            <span class="visually-hidden">로딩중입니다.</span>
+        </div>
+        <div class="container h-100" style="display: none;">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-md-6" id="sign-up-box">
+                    <h3><strong>회원가입</strong></h3>
+                    <form th:action="@{/sign-up}" th:object="${userSignUpDto}" method="post">
+                        <label for="email" class="form-label">이메일</label>
+                        <div class="email-check-box">
+                            <input type="email" id="email" th:field="*{email}" class="form-control" aria-describedby="email-description" placeholder="이메일을 적어주세요">
+                            <button type="button" class="btn btn-dark" onclick="duplicateCheck()">중복확인</button>
+                        </div>
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+                        <label for="password" class="form-label">비밀번호</label>
+                        <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 적어주세요. (8자 이상)">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                        <label for="passwordCheck" class="form-label">비밀번호 확인</label>
+                        <input type="password" id="passwordCheck" th:field="*{passwordCheck}" class="form-control" placeholder="입력했던 것을 한 번 더 적어주세요.">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></div>
+
+                        <label for="name" class="form-label">이름</label>
+                        <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="이름을 적어주세요. (3자 이상)">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+                        <label for="phoneNumber" class="form-label">휴대폰 번호</label>
+                        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="-를 포함한 휴대폰 번호를 적어주세요.">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+                        <label for="birthday" class="form-label">생일</label>
+                        <input type="date" id="birthday" th:field="*{birthday}" class="form-control">
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
+
+                        <select name="sex" id="sex">
+                            <option th:value="선택안함" th:selected="${sex == '선택안함'}">성별 선택</option>
+                            <option th:value="남자" th:selected="${sex == '남자'}">남자</option>
+                            <option th:value="여자" th:selected="${sex == '여자'}">여자</option>
+                        </select>
+
+                        <!-- 이용약관 modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">PCMOA 이용약관</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        이용약관에 동의하지 않을 시 구매에 제한이 생길 수도 있습니다.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인하였습니다!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sign-up-box-conditions">
+                            <input type="button" id="sign-up-conditions" data-toggle="modal" data-target="#exampleModalCenter" value="약관 확인"/>
+                            <label th:for="agree">동의</label>
+                            <input type="radio" id="agree" th:field="*{agree}" th:checked="${userSignUpDto.agree}" value="true"/>
+                            <label th:for="disagree">비동의</label>
+                            <input type="radio" id="disagree" th:field="*{agree}" th:checked="${!userSignUpDto.agree}" value="false"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark" id="sign-up-box-submit">가입하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

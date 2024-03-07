@@ -1,0 +1,53 @@
+#login-form-box {
+    width: 100%;
+    white-space: nowrap;
+}
+
+#login-form-box h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#login-form-box .form {
+    display: none;
+}
+
+#login-form-box .toggleBtn {
+    display: inline-block;
+    width: 50%;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    margin-bottom: 15px;
+}
+
+#login-form-box .toggleBtn.selected {
+    background-color: black;
+    color: white;
+}
+
+#login-form-box .form button {
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+#login-form-box .login-form-box-etc {
+    text-align: right;
+}
+
+#login-form-box .login-form-box-etc p {
+    text-align: center;
+}
+
+#login-form-box .login-form-box-search {
+    margin-bottom: 15px;
+}
+
+#login-form-box .login-form-box-search a {
+    color: black;
+    margin-left: 10px;
+}
+

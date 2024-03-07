@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AdminProductServiceImpl implements AdminProductService {
@@ -43,14 +44,14 @@ public class AdminProductServiceImpl implements AdminProductService {
         try {
             for (MultipartFile image: images) {
 
-                String fileName = StringUtils.cleanPath(image.getOriginalFilename());
-                Resource resource = resourceLoader.getResource("classpath:/static/images/");
-                File uploadPath = resource.getFile();
-                Path filePath = uploadPath.toPath().resolve(fileName);
-                Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                String _imageName = StringUtils.cleanPath(image.getOriginalFilename());
+                String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product";
+                String imageName = UUID.randomUUID() + "_" + _imageName;
+                File file = new File(path, imageName);
+                image.transferTo(file);
 
                 // 이미지 저장 | ChoiDevv
-                productImagesRepository.save(ProductImages.toEntity(fileName, products));
+                productImagesRepository.save(ProductImages.toEntity(imageName, products));
             }
         } catch (IOException e) {
             e.printStackTrace();
