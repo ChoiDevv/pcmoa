@@ -1,2 +1,5 @@
 # 상품 이미지 저장 디렉토리
 /src/main/resources/static/image/product/
+
+# querydsl Q클래스
+/build/generated
